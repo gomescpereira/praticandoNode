@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    entrypoint: dockerize -wait tcp://db:5432 -timeout 40s ./.docker/entrypoint.sh
+    container_name: imersao-fullcycle-3-store-api-app
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+    networks: 
+      - codebank_kafkanet
+ 
+networks:
+  codebank_kafkanet:
+    external: true
+
+

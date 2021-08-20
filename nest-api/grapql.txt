@@ -1,0 +1,115 @@
+SCHEMA & Types
+
+directive @specifiedBy(url: String)
+
+input CreateUserInput {
+
+  name: String!
+  email: String!
+  password_hash: String!
+
+}
+
+type Mutation {
+  createUser(data: CreateUserInput): User!
+  updateUser(id: String, data: UpdateUserInput): User!
+  deleteUser(id: String): Boolean!
+}
+
+
+input UpdateUserInput {
+  name:  String!
+  email: String!
+  password_hash: String!
+}
+
+
+type Query {
+  users: [User!]!
+  user(id: String!): User!
+
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  password_hash: String!
+}
+
+
+# Como fazer Pesquisas
+no vscode dando control+space te ajuda na montagem comandos(query)
+##
+query { // Não e necessario já está compreendido
+  users{
+    name
+    email
+  } 
+}
+##
+user(id: "6"){
+  email
+}
+
+# Subscription e um modo de comunicação em tempo real (baseado em estilo websockt)
+# Fragmento são blocos de query que eu posso reutlizar em diversas querys
+
+#Mutation são metodos para alteração dados pelo grapql
+# Insert
+mutation{
+  createUser(
+    data: {
+      name: "Carlos"
+      email: "gomes@mail.com"
+      password_hash: "1234567"
+    }
+  )
+  {
+    id // retorno da solicitação
+  }
+ 
+  
+}
+
+#Update
+mutation{
+  updateUser(
+    id: "6"  
+    data: {
+      name: "Carlos Eduardo"
+      password_hash: "7654321"
+    }
+  )
+  {
+   name
+   email
+  }
+}
+
+
+#Delete
+mutation{
+  deleteUser(id: "6" )
+
+
+# Tudo isso com apeans um Endpoint
+
+Exemplo de uma solitação unica em tres tabelas
+query {
+ User(id: "er36dffw") {
+    name
+    posts {
+      title
+      date
+    }
+    followers(last: 3) { // Os ultimos 3 seguidores
+      name
+    }
+ }
+}
+
+Ferramnetas para otimização LIB NQ
+
+
+
