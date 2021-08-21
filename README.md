@@ -3,7 +3,7 @@
   Uso prático do Node & Nest
 
 
-  Na pasta Node -> Foi inicialmente  instanciado no Live rocketsat sobre TDD
+  Na pasta Node -> Foi inicialmente  instanciado na Live rocketsat sobre TDD
   Mas adicionado e configurado para Typescript
 
 
